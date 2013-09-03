@@ -1,0 +1,11 @@
+.source { display: none;}
+.reveal .CodeMirror {
+	font-size: 18px;
+	line-height: 20px;
+	box-shadow: none;
+	height: 150px;
+	width: 90%;
+	margin: 15px auto;
+}
+/*.reveal .CodeMirror-code { font-size: 24px;}*/
+.reveal .CodeMirror-code pre { box-shadow: none;}
