@@ -23,10 +23,13 @@
 		var run = function (source, consoleElem) {
 			var nativeLog = window.console.log;
 			consoleElem.innerHTML = "";
+			consoleElem.style.display = "none";
 			window.console.log = function () {
+				consoleElem.style.display = "block";
 				var text = document.createTextNode(arguments[0] + "\n");
 				consoleElem.appendChild(text);
 				nativeLog.apply(this, arguments);
+				Reveal.sync();
 			};
 			eval(source);
 			window.console.log = nativeLog;
@@ -40,7 +43,7 @@
 				code.className = "";
 				var cm = CodeMirror.fromTextArea(code, { mode: "coffeescript", theme: "solarized" });
 				var compiledElem = document.createElement("div");
-				var compiledHtml = "<pre><code class='javascript'></code></pre>";
+				var compiledHtml = "<pre><code class='javascript' style='display:none'></code></pre>";
 				compiledElem.innerHTML = compiledHtml;
 				code.parentElement.insertBefore(compiledElem, null);
 				var compileCode = function () {
@@ -57,6 +60,9 @@
 					consoleElem.innerHTML = "<code class='console'></code>";
 					code.parentElement.insertBefore(consoleElem, null);
 					buttonElem.addEventListener("click", compileCode);
+
+
+
 				} else {
 					compileCode();
 					cm.on("change", compileCode);

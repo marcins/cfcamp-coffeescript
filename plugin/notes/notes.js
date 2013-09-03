@@ -85,6 +85,7 @@ var RevealNotes = (function() {
 	}
 
 	// Open the notes when the 's' key is hit
+	/*
 	document.addEventListener( 'keydown', function( event ) {
 		// Disregard the event if the target is editable or a
 		// modifier is present
@@ -95,6 +96,6 @@ var RevealNotes = (function() {
 			openNotes();
 		}
 	}, false );
-
+	*/
 	return { open: openNotes };
 })();

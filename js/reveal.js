@@ -2113,7 +2113,6 @@ var Reveal = (function(){
 		if( typeof config.keyboard === 'object' ) {
 
 			for( var key in config.keyboard ) {
-
 				// Check if this binding matches the pressed key
 				if( parseInt( key, 10 ) === event.keyCode ) {
 
