@@ -47,18 +47,26 @@
                     <p>CFCamp 2013</p>
                 </section>
                 <section>
-                    <section>
-                        <h2>Alt.JS</h2>
-                    </section>
-                    <section>
-                        <blockquote>&ldquo;A better way of writing JavaScript&rdquo;</blockquote>
-                    </section>
-                    <section>
-                        <h2>Transpiler</h2>
-                    </section>
+                    <h2>Agenda</h2>
+                    <ul>
+                        <li>What is CoffeeScript?</li>
+                        <li>CoffeeScript syntax</li>
+                        <li>Using CoffeeScript</li>
+                    </ul>
                 </section>
                 <section>
-                    <h2>Why not just use JavaScript?</h2>
+                    <section>
+                        <h2>What is CoffeeScript?</h2>
+                        <blockquote class="fragment">&ldquo;A better way of writing JavaScript&rdquo;</blockquote>
+                    </section>
+                    <section>
+                        <h2>Alt.JS</h2>
+                        <p>Like TypeScript</p>
+                        <p>Not like ClojureScript, Roy, etc</p>
+                    </section>
+                    <section>
+                        <h2>It's a transpiler!</h2>
+                    </section>
                 </section>
                 <section>
                     <h2>So what is it?</h2>
@@ -74,20 +82,20 @@ Syntactically significant whitespace.
                     </aside>
                 </section>
                 <section>
-                    <p>It's not a substitute for knowing JavaScript!</p>
+                    <h2>Why not just use JavaScript?</h2>
+                    <ul>
+                        <li class="fragment">It's just more fun to write CoffeeScript!</li>
+                        <li class="fragment">It can be easier to read</li>
+                        <li class="fragment">No technical reason</li>
+                    </ul>
                 </section>
                 <section>
-                    <section>
-                        <h2>So what are the drawbacks?</h2>
-                    </section>
-                    <section>
-                        <h2>More difficult to debug</h2>
-                        <p class="fragment">(Source Maps help)</p>
-                    </section>
-                    <section>
-                        <h2>Requires a compile step</h2>
-                        <p class="fragment">Tools make this less painful</p>
-                    </section>
+                    <h2>So what are the drawbacks?</h2>
+                    <ul>
+                        <li class="fragment">More difficult to debug <span class="fragment">(Source Maps help)</span></li>
+                        <li class="fragment">Requires a compile step <span class="fragment">(Tools make this less painful)</span></li>
+                        <li class="fragment"><strong>It's not a substitute for knowing JavaScript!</strong></li>
+                    </ul>
                 </section>
                 <section>
                     <section>
@@ -120,6 +128,9 @@ Syntactically significant whitespace.
                     <textarea class="source compile-only">func = (param1, param2) ->
     console.log param1
 
+func = () ->
+    console.log "Hello!"
+
 func =  ->
     console.log "Hello!"
 
@@ -145,22 +156,26 @@ func =  ->
                 </section>
                 <section>
                     <h4>Arrays</h4>
-                    <textarea class="source compile-only">cities = [
+                    <textarea class="source compile-only">cities = ["Sydney", "Munich"]
+
+cities = [
     "Sydney"
     "Munich"
 ]</textarea>
                 </section>
                 <section>
                     <h4>Objects</h4>
-                    <textarea class="source compile-only">cities = []
-cities["Munich"] = {
-    population: 1234
-    region: 'Bavaria'
-    districts:
-        centre:
-            something: 1
-            somethingElse: 2
-}</textarea>
+                    <textarea class="source compile-only">cities = {
+    Munich:
+        population: 1388308
+        region: 'Bavaria'
+        districts: [
+            "Altstadt-Lehel"
+            "Isarvorstadt"
+            "..."
+        ]
+}
+</textarea>
                 </section>
             </section>
             <section>
@@ -180,7 +195,8 @@ cities["Munich"] = {
                     <h3>unless</h3>
                     <pre><code class="coffeescript">console.log "x is NOT 2" if x != 2</code></pre>
                     <div class="fragment">
-                        <textarea class="source compile-only">console.log "x is NOT 2" unless x == 2</textarea>
+                        <textarea class="source compile-only">console.log "x is NOT 2" if x != 2
+console.log "x is NOT 2" unless x == 2</textarea>
                     </div>
                 </section>
                 <section>
@@ -192,15 +208,16 @@ cities["Munich"] = {
                     <h3>unless</h3>
                     <div>
                         <textarea class="source compile-only">unless x == 2
-        console.log "x is NOT 2"
-    else
-        console.log "x is 2"</textarea>
+    console.log "x is NOT 2"
+else
+    console.log "x is 2"</textarea>
                     </div>
                 <p><strong>NOT</strong> good practice!</p>
                 </section>
                 <section>
                     <h3>Aliases</h3>
-                    <textarea class="source compile-only">console.log "x is 2" if x is 2</textarea>
+                    <textarea class="source compile-only">console.log "x is 2" if x is 2
+console.log "x is 2" if x == 2</textarea>
                 </section>
                 <section>
                     <h3>Aliases</h3>
@@ -209,22 +226,43 @@ cities["Munich"] = {
             </section>
             <section>
                 <section>
-                    <h2>Loops and List Comprehensions</h2>
+                    <h2>Loops and Comprehensions</h2>
                 </section>
                 <section>
-                    <h2>List Comprehensions</h2>
-                    <p><em>expression</em> for <em>object</em> in <em>array</em></p>
+                    <h2>Array Comprehensions</h2>
+                    <p><em>expression</em> for <em>object</em> in <em>array</em> <span class="fragment">when <em>condition</em></span></p>
                 </section>
                 <section>
-                    <h2>List Comprehensions</h2>
+                    <h2>Array Comprehensions</h2>
                     <textarea class="source">doubled = (x * 2 for x in [1, 2, 3])
 console.log doubled</textarea>
                 </section>
                 <section>
-                    <h2>List Comprehensions: Filter</h2>
+                    <h2>Array Comprehensions: Filter</h2>
                     <textarea class="source">even = (x for x in [1, 2, 3 ,4] when x % 2 is 0)
 console.log even</textarea>
                 </section>
+                <section>
+                    <h2>Object Comprehensions</h2>
+                    <textarea class="source">cities = {Munich: {population: 123456},Sydney: {population: 123444}}
+console.log (value.population for own key, value of cities)
+console.log (city for city of cities)
+</textarea>
+                </section>
+                <section><h2>Comprehensions: Complex Expressions</h2>
+<textarea class="source short">x = (for i in [1,2,3,4]
+    i *= 2
+)
+console.log x
+</textarea>
+            </section>
+            <section><h2>Comprehensions: Complex Expressions</h2>
+<textarea class="source short">x = (for i in [1,2,3,4] when i % 2 isnt 0
+    i *= 2
+)
+console.log x
+</textarea>
+            </section>
             </section>
             <section>
                 <section>
@@ -343,6 +381,17 @@ console.log lucy.makeSound 'woof'</textarea>
             </section>
             <section>
                 <h2>Running CoffeeScript</h2>
+                <pre class="fragemnt">coffee -c file.coffee # compile</pre>
+                <pre class="fragment">coffee -l file.coffee # lint</pre>
+                <pre class="fragment">coffee -wc file.coffee # watch & compile</pre>
+                <pre class="fragment">coffee -cm file.coffee # sourcemap</pre>
+                <pre class="fragment">coffee -wmlc *.coffee # ALL THE THINGS!</pre>
+            </section>
+            <section>
+                <h2>coffee-script.js</h2>
+                <pre><code class="html"><script type="text/javascript" src="js/coffee-script.js"></script>
+&lt;script type="text/coffeescript">window.alert "Hello World!"</script></code></pre>
+                <pre class="fragment"><code class="javascript">var compiled = CoffeeScript.compile(source);</code></pre>
             </section>
             <section>
                 <h2>Using CoffeeScript with ColdFusion</h2>

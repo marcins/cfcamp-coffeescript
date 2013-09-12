@@ -43,9 +43,13 @@ var CoffeeCode = (function() {
 			if (codeNodes.length > 0) {
 				var code = codeNodes[0];
 				var compileOnly = code.className.indexOf("compile-only") > -1;
+				var isShort = code.className.indexOf("short") >= -1;
 				code.className = "";
-
 				slide.cm = CodeMirror.fromTextArea(code, { mode: "coffeescript", theme: "solarized" });
+				if (isShort) {
+					var cmElem = document.querySelectorAll(".CodeMirror");
+					cmElem[0].className += " CodeMirror-short";
+				}
 				var compiledElem = document.createElement("div");
 
 				var compiledHtml = "<pre><code class='javascript' style='display:none'></code></pre>";
@@ -71,7 +75,7 @@ var CoffeeCode = (function() {
 
 				} else {
 					compileCode();
-					cm.on("change", compileCode);
+					slide.cm.on("change", compileCode);
 				}
 			}
 		};
