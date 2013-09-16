@@ -47,6 +47,9 @@
                     <p>CFCamp 2013</p>
                 </section>
                 <section>
+                    <h1>G'Tag!</h1>
+                </section>
+                <section>
                     <h2>Agenda</h2>
                     <ul>
                         <li>What is CoffeeScript?</li>
@@ -94,6 +97,7 @@ Syntactically significant whitespace.
                     <ul>
                         <li class="fragment">More difficult to debug <span class="fragment">(Source Maps help)</span></li>
                         <li class="fragment">Requires a compile step <span class="fragment">(Tools make this less painful)</span></li>
+                        <li class="fragment">Potential incompatibilities with ES6 Harmony functionality</li>
                         <li class="fragment"><strong>It's not a substitute for knowing JavaScript!</strong></li>
                     </ul>
                 </section>
@@ -121,7 +125,7 @@ Syntactically significant whitespace.
 <p>is equivalent to..</p>
                     <pre><code class="coffeescript">$ ->
     $(".link").click ->
-        console.log "You clicked a link: #{@.href}"</code></pre>
+        console.log "You clicked a link: #{@href}"</code></pre>
                 </section>
                 <section>
                     <h2>Function declaration</h2>
@@ -134,17 +138,15 @@ func = () ->
 func =  ->
     console.log "Hello!"
 
+sum = (a, b) -> a + b
+
 </textarea>
                 </section>
                 <section>
                     <h2>CoffeeScript output</h2>
                     <textarea class="source compile-only">$ ->
     $(".link").click ->
-        console.log "You clicked a link: #{this.href}"</textarea>
-                </section>
-                <section>
-                    <h2>More function declarations</h2>
-                    <textarea class="source compile-only" data-trim>sum = (a, b) -> a + b</textarea>
+        console.log "You clicked a link: #{@href}"</textarea>
                 </section>
             </section>
             <section>
@@ -152,7 +154,24 @@ func =  ->
                     <h2>CoffeeScript Constructs</h2>
                 </section>
                 <section>
-                    <h3>Object and Array Definitions</h3>
+                    <h3>Variable, Object and Array Definitions</h3>
+                </section>
+                <section>
+                    <h4>Variables</h4>
+                    <textarea class="source">console.log @location
+name = "Marcin"
+                    </textarea>
+                </section>
+                <section>
+                    <h4>Variables: Warning!</h4>
+                    <textarea class="source">name = "Marcin"
+a = ->
+    something = true
+    name = "Micha" # DANGER!
+a()
+console.log name
+
+                    </textarea>
                 </section>
                 <section>
                     <h4>Arrays</h4>
@@ -251,7 +270,10 @@ console.log (city for city of cities)
                 </section>
                 <section><h2>Comprehensions: Complex Expressions</h2>
 <textarea class="source short">x = (for i in [1,2,3,4]
-    i *= 2
+    if i % 2
+        i *= 2
+    else
+        i += 1
 )
 console.log x
 </textarea>
@@ -305,41 +327,6 @@ cities[-1..] = "New York"
 </pre></aside>
                 </section>
             </section>
-            <section>
-                <section>
-                    <h2>Miscellany</h2>
-                    <p>Syntax stuff that didn't fit in the other categories!</p>
-                </section>
-                <section>
-                    <h2><em>this</em></h2>
-                    <textarea class="source compile-only">$(".link").click ->
-    console.log @.id
-                    </textarea>
-                </section>
-                <section>
-                    <h2><em>this:</em> Fat Arrow</h2>
-                    <textarea class="source compile-only">$(".link").click ->
-    $(".foo").click =>
-        console.log @.id
-                    </textarea>
-                </section>
-                <section>
-                    <h2>Destructuring Assignment</h2>
-                    <textarea class="source">
-foo = ->
-    ["one", "two"]
-[a, b] = foo()
-console.log a</textarea>
-                </section>
-                <section>
-                    <h2>Splats</h2>
-                    <textarea class="source">
-math = (operator, numbers...) ->
-    console.log numbers
-math "+", 1, 2, 3
-                    </textarea>
-                </section>
-        </section>
         <section>
             <section>
                 <h2>Classes</h2>
@@ -364,12 +351,47 @@ console.log city.toString()</textarea>
 
 
 class Dog extends Animal
-    makeSound: (sound) ->
-        super sound
+    makeSound: ->
+        super "Woof!"
 
 lucy = new Dog('Lucy')
-console.log lucy.makeSound 'woof'</textarea>
+console.log lucy.makeSound()</textarea>
             </section>
+        </section>
+            <section>
+                <section>
+                    <h2>Miscellany</h2>
+                    <p>Syntax stuff that didn't fit in the other categories!</p>
+                </section>
+                <section>
+                    <h2><em>this</em></h2>
+                    <textarea class="source compile-only">$(".link").click ->
+    console.log @id
+                    </textarea>
+                </section>
+                <section>
+                    <h2><em>this:</em> Fat Arrow</h2>
+                    <textarea class="source compile-only">$(".link").click ->
+    $(".foo").click =>
+        console.log @id
+                    </textarea>
+                </section>
+                <section>
+                    <h2>Destructuring Assignment</h2>
+                    <textarea class="source">
+foo = ->
+    ["one", "two"]
+[a, b] = foo()
+console.log a</textarea>
+                </section>
+                <section>
+                    <h2>Splats</h2>
+                    <textarea class="source">
+math = (operator, numbers...) ->
+    console.log numbers
+math "+", 1, 2, 3
+                    </textarea>
+                </section>
         </section>
         <section>
             <section>
@@ -396,10 +418,19 @@ console.log lucy.makeSound 'woof'</textarea>
             <section>
                 <h2>Using CoffeeScript with ColdFusion</h2>
                 <ul>
-                    <li class="fragment">Pre-compile</li>
+                    <li class="fragment">Pre-compile: <em>coffee</em>, GruntJS</li>
                     <li class="fragment">CFStatic (Demo)</li>
                 </ul>
             </section>
+        </section>
+        <section>
+            <h2>Summary</h2>
+            <ul>
+                <li class="fragment">CoffeeScript makes writing JavaScript fun!</li>
+                <li class="fragment">Useful syntactic sugar</li>
+                <li class="fragment">It adds complexity to your dev process</li>
+                <li class="fragment">Has clashes with future JS functionality</li>
+            </ul>
         </section>
         <section>
             <h2>The End</h2>
