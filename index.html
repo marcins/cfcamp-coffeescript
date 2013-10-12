@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
         <link rel="stylesheet" href="css/reveal.min.css">
-        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="css/theme/beige.css" id="theme">
 
         <!-- For syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -76,6 +76,7 @@
                     <ul>
                         <li class="fragment">It's like a mix of Ruby, Python and Javascript</li>
                         <li class="fragment">No curly braces</li>
+                        <li class="fragment">No semi-colons</li>
                         <li class="fragment">(Mostly) optional parentheses</li>
                         <li class="fragment">Syntactically significant whitespace</li>
                     </ul>
@@ -97,7 +98,7 @@ Syntactically significant whitespace.
                     <ul>
                         <li class="fragment">More difficult to debug <span class="fragment">(Source Maps help)</span></li>
                         <li class="fragment">Requires a compile step <span class="fragment">(Tools make this less painful)</span></li>
-                        <li class="fragment">Potential incompatibilities with ES6 Harmony functionality</li>
+                        <li class="fragment">Potential clashes with ES6 Harmony functionality</li>
                         <li class="fragment"><strong>It's not a substitute for knowing JavaScript!</strong></li>
                     </ul>
                 </section>
@@ -144,7 +145,7 @@ sum = (a, b) -> a + b
                 </section>
                 <section>
                     <h2>CoffeeScript output</h2>
-                    <textarea class="source compile-only">$ ->
+                    <textarea class="source compile-only iffe">$ ->
     $(".link").click ->
         console.log "You clicked a link: #{@href}"</textarea>
                 </section>
@@ -158,7 +159,7 @@ sum = (a, b) -> a + b
                 </section>
                 <section>
                     <h4>Variables</h4>
-                    <textarea class="source">console.log @location
+                    <textarea class="source short">console.log @location
 name = "Marcin"
                     </textarea>
                 </section>
@@ -253,12 +254,12 @@ console.log "x is 2" if x == 2</textarea>
                 </section>
                 <section>
                     <h2>Array Comprehensions</h2>
-                    <textarea class="source">doubled = (x * 2 for x in [1, 2, 3])
+                    <textarea class="source short">doubled = (x * 2 for x in [1, 2, 3])
 console.log doubled</textarea>
                 </section>
                 <section>
                     <h2>Array Comprehensions: Filter</h2>
-                    <textarea class="source">even = (x for x in [1, 2, 3 ,4] when x % 2 is 0)
+                    <textarea class="source short">even = (x for x in [1, 2, 3 ,4] when x % 2 is 0)
 console.log even</textarea>
                 </section>
                 <section>
@@ -331,7 +332,7 @@ cities[-1..] = "New York"
             <section>
                 <h2>Classes</h2>
                 <div class="fragment">
-                <textarea class="source">class City
+                <textarea class="source short">class City
     constructor: (@name, @population) ->
 
     toString: ->
@@ -343,7 +344,7 @@ console.log city.toString()</textarea>
             </section>
             <section>
                 <h2>Classes: Inheritance</h2>
-                <textarea class="source">class Animal
+                <textarea class="source short">class Animal
     constructor: (@name) ->
 
     makeSound: (sound) ->
@@ -377,6 +378,14 @@ console.log lucy.makeSound()</textarea>
                     </textarea>
                 </section>
                 <section>
+                    <h2>Splats</h2>
+                    <textarea class="source">
+math = (operator, numbers...) ->
+    console.log numbers
+math "+", 1, 2, 3
+                    </textarea>
+                </section>
+                <section>
                     <h2>Destructuring Assignment</h2>
                     <textarea class="source">
 foo = ->
@@ -385,12 +394,12 @@ foo = ->
 console.log a</textarea>
                 </section>
                 <section>
-                    <h2>Splats</h2>
+                    <h2>Destructuring Assignment and Splats</h2>
                     <textarea class="source">
-math = (operator, numbers...) ->
-    console.log numbers
-math "+", 1, 2, 3
-                    </textarea>
+foo = ->
+    ["one", "two", "three"]
+[a, b...] = foo()
+console.log b</textarea>
                 </section>
         </section>
         <section>
@@ -405,7 +414,7 @@ math "+", 1, 2, 3
                 <h2>Running CoffeeScript</h2>
                 <pre class="fragemnt">coffee -c file.coffee # compile</pre>
                 <pre class="fragment">coffee -l file.coffee # lint</pre>
-                <pre class="fragment">coffee -wc file.coffee # watch & compile</pre>
+                <pre class="fragment">coffee -wc file.coffee # watch &amp; compile</pre>
                 <pre class="fragment">coffee -cm file.coffee # sourcemap</pre>
                 <pre class="fragment">coffee -wmlc *.coffee # ALL THE THINGS!</pre>
             </section>
@@ -429,7 +438,7 @@ math "+", 1, 2, 3
                 <li class="fragment">CoffeeScript makes writing JavaScript fun!</li>
                 <li class="fragment">Useful syntactic sugar</li>
                 <li class="fragment">It adds complexity to your dev process</li>
-                <li class="fragment">Has clashes with future JS functionality</li>
+                <li class="fragment">Has implementation clashes with future JS functionality</li>
             </ul>
         </section>
         <section>
@@ -438,15 +447,17 @@ math "+", 1, 2, 3
                 <li>Resources
                     <ul>
                         <li><a href="#">coffeescript.org</a> - Documentation, downloads, etc</li>
-                        <li><a href="#">github.com</a> - CFStatic</li>
+                        <li><a href="https://github.com/DominicWatson/cfstatic">github.com/DominicWatson/cfstatic</a> - CFStatic</li>
+                        <li><a href="#">gruntjs.com</a> - GruntJS</li>
                     </ul>
                 </li>
                 <li>Get in touch
                     <ul>
                         <li>marcins@webqem.com</li>
-                        <li>@MarcinS</li>
+                        <li>@MarcinS - Twitter</li>
                     </ul>
                 </li>
+                <li>Presentation will be on Github soon: <a href="https://github.com/marcins/cfcamp-coffeescript">https://github.com/marcins/cfcamp-coffeescript</a></li>
             </ul>
         </section>
             </div> <!-- end slides -->
