@@ -1,13 +1,13 @@
 // START CUSTOM REVEAL.JS INTEGRATION
 var CoffeeCode = (function() {
 	if( typeof window.addEventListener === 'function' ) {
-		var compile = function () {
+		var compile = function (bare) {
 			var slide = Reveal.getCurrentSlide();
 			var code = slide.cm.getValue();
 			var targetNode = slide.codeTarget;
 			var compiledCode = "";
 			try {
-				compiledCode = CoffeeScript.compile(code);
+				compiledCode = CoffeeScript.compile(code, {bare: bare});
 				targetNode.style.display = "block";
 				targetNode.dataset.compiled = compiledCode;
 				targetNode.innerHTML = compiledCode;
@@ -44,6 +44,8 @@ var CoffeeCode = (function() {
 				var code = codeNodes[0];
 				var compileOnly = code.className.indexOf("compile-only") > -1;
 				var isShort = code.className.indexOf("short") >= -1;
+				var isBare = code.className.indexOf("iffe") === -1;
+				slide.isBare = isBare;
 				code.className = "";
 				slide.cm = CodeMirror.fromTextArea(code, { mode: "coffeescript", theme: "solarized" });
 				if (isShort) {
@@ -56,7 +58,7 @@ var CoffeeCode = (function() {
 				compiledElem.innerHTML = compiledHtml;
 				code.parentElement.insertBefore(compiledElem, null);
 				var compileCode = function () {
-					var compiled = compile();
+					var compiled = compile(isBare);
 					if (compiled && !compileOnly) {
 						run(compiled, consoleElem);
 					}
@@ -96,7 +98,8 @@ var CoffeeCode = (function() {
 		});
 
 		var compileAndRun = function () {
-			var code = compile();
+			var slide = Reveal.getCurrentSlide();
+			var code = compile(slide.isBare);
 			run(code);
 		};
 
