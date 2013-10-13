@@ -1,3 +1,9 @@
+# Introduction to CoffeeScript: CFCamp 2013 Presentation
+
+Introductory presentation to the CoffeeScript language.
+
+Created using the reveal.js framework.
+---
 # reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.png?branch=master)](https://travis-ci.org/hakimel/reveal.js)
 
 A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
