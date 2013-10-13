@@ -56,7 +56,10 @@ var CoffeeCode = (function() {
 
 				var compiledHtml = "<pre><code class='javascript' style='display:none'></code></pre>";
 				compiledElem.innerHTML = compiledHtml;
-				code.parentElement.insertBefore(compiledElem, null);
+				var refNode = slide.cm.getWrapperElement();
+				refNode.parentNode.insertBefore(compiledElem, refNode.nextSibling);
+				//slide.cm.getWrapperElement().insertBefore(compiledElem, null);
+
 				var compileCode = function () {
 					var compiled = compile(isBare);
 					if (compiled && !compileOnly) {
