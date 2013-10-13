@@ -103,6 +103,9 @@ Syntactically significant whitespace.
                     </ul>
                 </section>
                 <section>
+                    <h2>Should I use it?</h2>
+                </section>
+                <section>
                     <section>
                         <h2>So what does it look like‽</h2>
                         <p class="fragment">I'll get to that...</p>
@@ -148,6 +151,7 @@ sum = (a, b) -> a + b
                     <textarea class="source compile-only iffe">$ ->
     $(".link").click ->
         console.log "You clicked a link: #{@href}"</textarea>
+        <p><em>iffy</em>: Immediately-Invoked Function Expression (IIFE)</p>
                 </section>
             </section>
             <section>
@@ -226,12 +230,10 @@ console.log "x is NOT 2" unless x == 2</textarea>
                 </section>
                 <section>
                     <h3>unless</h3>
-                    <div>
                         <textarea class="source compile-only">unless x == 2
     console.log "x is NOT 2"
 else
     console.log "x is 2"</textarea>
-                    </div>
                 <p><strong>NOT</strong> good practice!</p>
                 </section>
                 <section>
@@ -438,7 +440,7 @@ console.log b</textarea>
                 <li class="fragment">CoffeeScript makes writing JavaScript fun!</li>
                 <li class="fragment">Useful syntactic sugar</li>
                 <li class="fragment">It adds complexity to your dev process</li>
-                <li class="fragment">Has implementation clashes with future JS functionality</li>
+                <li class="fragment">Potential clashes with future JS functionality</li>
             </ul>
         </section>
         <section>
