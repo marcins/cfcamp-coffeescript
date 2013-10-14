@@ -126,7 +126,7 @@ Syntactically significant whitespace.
         console.log("You clicked a link: " + this.href);
     });
 });</code></pre>
-<p>is equivalent to..</p>
+<p>would be written as..</p>
                     <pre><code class="coffeescript">$ ->
     $(".link").click ->
         console.log "You clicked a link: #{@href}"</code></pre>
@@ -148,7 +148,7 @@ sum = (a, b) -> a + b
                 </section>
                 <section>
                     <h2>CoffeeScript output</h2>
-                    <textarea class="source compile-only iffe">$ ->
+                    <textarea class="source compile-only iffe short">$ ->
     $(".link").click ->
         console.log "You clicked a link: #{@href}"</textarea>
         <p><em>iffy</em>: Immediately-Invoked Function Expression (IIFE)</p>
@@ -163,8 +163,8 @@ sum = (a, b) -> a + b
                 </section>
                 <section>
                     <h4>Variables</h4>
-                    <textarea class="source short">console.log @location
-name = "Marcin"
+                    <textarea class="source short">name = "Marcin"
+console.log @location
                     </textarea>
                 </section>
                 <section>
@@ -172,7 +172,7 @@ name = "Marcin"
                     <textarea class="source">name = "Marcin"
 a = ->
     something = true
-    name = "Micha" # DANGER!
+    name = "Lucas" # DANGER!
 a()
 console.log name
 
@@ -217,8 +217,8 @@ cities = [
                     <h3>unless</h3>
                     <pre><code class="coffeescript">console.log "x is NOT 2" if x != 2</code></pre>
                     <div class="fragment">
-                        <textarea class="source compile-only">console.log "x is NOT 2" if x != 2
-console.log "x is NOT 2" unless x == 2</textarea>
+                        <textarea class="source compile-only">console.log "x is NOT 2" unless x == 2
+console.log "x is NOT 2" if x != 2</textarea>
                     </div>
                 </section>
                 <section>
@@ -438,7 +438,7 @@ console.log b</textarea>
             <section>
                 <h2>coffee-script.js</h2>
                 <pre><code class="html"><script type="text/javascript" src="js/coffee-script.js"></script>
-&lt;script type="text/coffeescript">window.alert "Hello World!"</script></code></pre>
+&lt;script type="text/coffeescript">window.alert "Hello World!"&lt;/script&gt;</code></pre>
                 <pre class="fragment"><code class="javascript">var compiled = CoffeeScript.compile(source);</code></pre>
             </section>
             <section>
@@ -454,8 +454,12 @@ console.log b</textarea>
             <ul>
                 <li class="fragment">CoffeeScript makes writing JavaScript fun!</li>
                 <li class="fragment">Useful syntactic sugar</li>
+            </ul>
+            <h3 class="fragment"><strong>But..</strong></h3>
+            <ul>
                 <li class="fragment">It adds complexity to your dev process</li>
                 <li class="fragment">Potential clashes with future JS functionality</li>
+                <li class="fragment">Might be solving a problem you don't have</li>
             </ul>
         </section>
         <section>
