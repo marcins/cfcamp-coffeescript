@@ -1,6 +1,6 @@
 # Introduction to CoffeeScript: CFCamp 2013 Presentation
 
-Introductory presentation to the CoffeeScript language. Written using reveal.js and dynamic CoffeeScript compiling so you'll need to `grunt serve` to view.
+Introductory presentation to the CoffeeScript language. Open `index.html` to view!
 
 Created using the reveal.js framework.
 
