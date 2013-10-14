@@ -189,7 +189,7 @@ cities = [
                 </section>
                 <section>
                     <h4>Objects</h4>
-                    <textarea class="source compile-only">cities = {
+                    <textarea class="source compile-only">cities =
     Munich:
         population: 1388308
         region: 'Bavaria'
@@ -197,9 +197,7 @@ cities = [
             "Altstadt-Lehel"
             "Isarvorstadt"
             "..."
-        ]
-}
-</textarea>
+        ]</textarea>
                 </section>
             </section>
             <section>
@@ -252,7 +250,8 @@ console.log "x is 2" if x == 2</textarea>
                 </section>
                 <section>
                     <h2>Array Comprehensions</h2>
-                    <p><em>expression</em> for <em>object</em> in <em>array</em> <span class="fragment">when <em>condition</em></span></p>
+                    <pre><code class="coffeescript">result = (expression for object in array)</code></pre>
+                    <pre class="fragment"><code class="coffeescript">result = (expression for object in array when condition)</code></pre>
                 </section>
                 <section>
                     <h2>Array Comprehensions</h2>
@@ -266,7 +265,12 @@ console.log even</textarea>
                 </section>
                 <section>
                     <h2>Object Comprehensions</h2>
-                    <textarea class="source">cities = {Munich: {population: 123456},Sydney: {population: 123444}}
+                    <pre><code class="coffeescript">result = (expression for key of object)</code></pre>
+                    <pre class="fragment"><code class="coffeescript">result = (expression for own key, value of object)</code></pre>
+                </section>
+                <section>
+                    <h2>Object Comprehensions</h2>
+                    <textarea class="source">cities = {Munich: {population: 1388308},Sydney: {population: 4627345}}
 console.log (value.population for own key, value of cities)
 console.log (city for city of cities)
 </textarea>
@@ -425,11 +429,11 @@ console.log b</textarea>
             </section>
             <section>
                 <h2>Running CoffeeScript</h2>
+                <pre class="fragemnt">coffee # REPL</pre>
                 <pre class="fragemnt">coffee -c file.coffee # compile</pre>
-                <pre class="fragment">coffee -l file.coffee # lint</pre>
                 <pre class="fragment">coffee -wc file.coffee # watch &amp; compile</pre>
                 <pre class="fragment">coffee -cm file.coffee # sourcemap</pre>
-                <pre class="fragment">coffee -wmlc *.coffee # ALL THE THINGS!</pre>
+                <pre class="fragment">coffee -wmc *.coffee # ALL THE THINGS!</pre>
             </section>
             <section>
                 <h2>coffee-script.js</h2>
